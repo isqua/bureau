@@ -1,9 +1,10 @@
 prompt_bureau_setup () {
+    autoload -U colors && colors
     prompt_bureau_user_color=${1:-'white'}
     prompt_bureau_path_color=${2:-$prompt_bureau_user_color}
     prompt_bureau_vcs_color=${3:-$prompt_bureau_user_color}
 
-    autoload -Uz vcs_info
+    autoload -Uz vcs_info add-zsh-hook
     prompt_bureau_vcs_style
     add-zsh-hook precmd prompt_bureau_precmd
     add-zsh-hook zshexit prompt_bureau_exit
