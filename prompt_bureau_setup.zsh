@@ -69,7 +69,7 @@ prompt_bureau_vcs_prompt () {
 }
 
 prompt_bureau_exit () {
-    rm "$(prompt_bureau_rprompt_file)"
+    rm -f "$(prompt_bureau_rprompt_file)"
 }
 
 TRAPUSR1 () {
