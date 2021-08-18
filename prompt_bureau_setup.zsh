@@ -31,7 +31,7 @@ BUREAU_ASYNC_PROC=0
 
 prompt_bureau_precmd () {
     # user@host path
-    local left="%{$fg_bold[$prompt_bureau_user_color]%}%n%{$reset_color%}@%m %{$fg_bold[$prompt_bureau_path_color]%}%~%{$reset_color%}"
+    local left="%{$fg_bold[$prompt_bureau_user_color]%}%n%{$reset_color%}@%m %{$fg_bold[$prompt_bureau_path_color]%}%~%{$reset_color%} $(prompt_bureau_nvm)"
     # current time
     local right="[%*]"
     local offset=$(( $COLUMNS - $(prompt_bureau_string_width $left) - $(prompt_bureau_string_width $right) + 2 ))
@@ -58,6 +58,11 @@ prompt_bureau_vcs_style () {
     zstyle ':vcs_info:git*' unstagedstr "%{$fg_bold[red]%}●"
     zstyle ':vcs_info:git*' formats "[${git_base}%{$reset_color%}]"
     zstyle ':vcs_info:git*' actionformats "[${git_base} %{$fg[magenta]%}⌘ %a%{$reset_color%}]"
+}
+
+prompt_bureau_nvm () {
+    which nvm &>/dev/null || return
+    echo "%B⬡%b ${$(nvm current)#v}"
 }
 
 prompt_bureau_vcs_prompt () {
